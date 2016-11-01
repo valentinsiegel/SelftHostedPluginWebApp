@@ -31,21 +31,37 @@ namespace SelfHostWebApp.Core
         {
             try
             {
-                Debug.WriteLine($"resolve {serviceType.FullName}");
-                var export = _container.GetExports(serviceType, null, "").FirstOrDefault();
+                var export = _container.GetExports(serviceType, null, null).FirstOrDefault();
                 if (export != null)
+                {
+                    Console.WriteLine($"Resolved {serviceType.FullName}");
                     return export.Value;
+                }
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.Message);
+                Console.WriteLine("Failed to resolve {0}. {1}", serviceType.FullName, e.Message);
             }
             return null;
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return _container.GetExports(serviceType, null, "").Select(_ => _.Value);
+            try
+            {
+                Debug.WriteLine($"resolve {serviceType.FullName}");
+                var exports = _container.GetExports(serviceType, null, null);
+                if (exports != null)
+                {
+                    Console.WriteLine("Resolved {0} objects of type {1}", exports.Count(), serviceType.FullName);
+                    return exports.Select(_ => _.Value);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to resolve {0}. {1}", serviceType.FullName, e.Message);
+            }
+            return null;
         }
     }
 }

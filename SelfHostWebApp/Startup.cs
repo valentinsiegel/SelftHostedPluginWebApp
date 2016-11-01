@@ -19,14 +19,11 @@ namespace SelfHostWebApp
         public void Configuration(IAppBuilder builder)
         {
             var config = new HttpConfiguration();
-            //var container = new UnityContainer();
-            //container.RegisterType<ProductsController>();
-            //container.RegisterType<IMyService, MyService>();
 
             config.Formatters.Add(new MultiPartMediaTypeFormatter());
-
+            
             var assemblyCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            var dirCatalog = new DirectoryCatalog("c:\\plugins");
+            var dirCatalog = new DirectoryCatalog(Environment.CurrentDirectory + @"\plugins");
             var aggregateCatalog = new AggregateCatalog(assemblyCatalog, dirCatalog);
             var container = new CompositionContainer(aggregateCatalog, true);
 
@@ -35,6 +32,7 @@ namespace SelfHostWebApp
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });
+            
             builder.UseWebApi(config);
         }
     }

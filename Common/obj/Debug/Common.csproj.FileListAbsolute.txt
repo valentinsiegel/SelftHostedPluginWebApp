@@ -1,0 +1,5 @@
+C:\Users\Valentin\documents\visual studio 2015\Projects\SelfHostWebApp\Common\bin\Debug\Common.dll
+C:\Users\Valentin\documents\visual studio 2015\Projects\SelfHostWebApp\Common\bin\Debug\Common.pdb
+C:\Users\Valentin\documents\visual studio 2015\Projects\SelfHostWebApp\Common\obj\Debug\Common.dll
+C:\Users\Valentin\documents\visual studio 2015\Projects\SelfHostWebApp\Common\obj\Debug\Common.pdb
+C:\Users\Valentin\documents\visual studio 2015\Projects\SelfHostWebApp\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
