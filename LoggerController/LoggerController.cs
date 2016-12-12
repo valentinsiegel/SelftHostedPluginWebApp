@@ -14,20 +14,21 @@ namespace LoggerController
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class LoggerController : ApiController
     {
-        //private IEnumerable<Lazy<ILogger, ExportPluginAttribute>> _loggers;
+        private IEnumerable<Lazy<ILogger, ExportPluginAttribute>> _loggers;
 
-        //[ImportingConstructor]
-        //public LoggerController(IEnumerable<Lazy<ILogger, ExportPluginAttribute>> Loggers)
-        //{
+        [ImportingConstructor]
+        public LoggerController(IEnumerable<Lazy<ILogger, ExportPluginAttribute>> Loggers)
+        {
 
-        //    _loggers = Loggers;
+            _loggers = Loggers;
 
-        //    foreach (Lazy<ILogger, ExportPluginAttribute> logger in _loggers)
-        //    {
-        //        Console.WriteLine("Plugin name : {0}, Plugin Version {1}", logger.Metadata.Name, logger.Metadata.Version);
-        //        logger.Value.Start();
-        //    }
-        //}
+            foreach (Lazy<ILogger, ExportPluginAttribute> logger in _loggers)
+            {
+                Console.WriteLine("Plugin name : {0}, Plugin Version {1}", logger.Metadata.Name, logger.Metadata.Version);
+                //logger.Value.Start();
+            }
+        }
+
         [ImportMany(AllowRecomposition = true)]
         public IEnumerable<Lazy<ILogger>> Loggers { get; set; }
 

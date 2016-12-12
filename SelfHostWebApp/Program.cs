@@ -26,7 +26,12 @@ namespace SelfHostWebApp
                 System.Threading.Thread.Sleep(1000);
             }
 
-            Array.ForEach(Directory.GetFiles(Environment.CurrentDirectory + @"\plugins"), File.Delete);
+            //Array.ForEach(Directory.GetFiles(Environment.CurrentDirectory + @"\plugins"), File.Delete);
+
+            foreach (string fullPath in Directory.GetFiles(Environment.CurrentDirectory + @"\plugins"))
+            {
+                File.Delete(fullPath);
+            }
 
             foreach (string fullPath in Directory.GetFiles(Environment.CurrentDirectory + @"\uploads"))
             {
@@ -40,6 +45,7 @@ namespace SelfHostWebApp
                 SetFileWatcher();
                 LockResources();
                 Console.ReadLine();
+                Environment.Exit(0);
             }
         }
 
@@ -65,6 +71,7 @@ namespace SelfHostWebApp
                         | NotifyFilters.FileName | NotifyFilters.DirectoryName;
             watcher.Filter = "*.*";
             watcher.Changed += new FileSystemEventHandler(OnChanged);
+            watcher.Deleted += new FileSystemEventHandler(OnChanged);
             watcher.EnableRaisingEvents = true;
         }
 
