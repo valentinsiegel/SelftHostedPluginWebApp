@@ -18,10 +18,10 @@ namespace SelfHostWebApp.Migrations
         protected override void Seed(SelfHostWebApp.Model.WebAppContext context)
         {
             var userManager = new UserManager<MyUser>(new UserStore<MyUser>(context));
-            var hash = userManager.PasswordHasher.HashPassword("admin");
-            if (userManager.Find("admin", hash) == null)
+            string hash = userManager.PasswordHasher.HashPassword("root@123");
+            if (userManager.Find("root", hash) == null)
             {
-                userManager.Create(new MyUser() { UserName = "admin" }, "admin");
+                userManager.Create(new MyUser() { UserName = "root", Email = "root@email.com"}, hash);
             }
         }
     }

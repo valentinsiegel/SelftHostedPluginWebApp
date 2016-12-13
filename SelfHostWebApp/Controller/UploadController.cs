@@ -25,7 +25,7 @@ namespace SelfHostWebApp.Controller
             return Directory.GetFiles(Environment.CurrentDirectory + @"\plugins").Select(_ => Path.GetFileName(_)).ToArray();
         }
 
-        [Authorize]
+        [Authorize] 
         [HttpPost]
         public void Post(FileData file)
         {

@@ -21,6 +21,7 @@ namespace SelfHostWebApp
 
         public void Start()
         {
+            Console.WriteLine("Starting ...");
             while (Directory.GetFiles(Environment.CurrentDirectory).Contains(Environment.CurrentDirectory + "\\LOCKED"))
             {
                 System.Threading.Thread.Sleep(1000);
@@ -41,7 +42,7 @@ namespace SelfHostWebApp
 
             using (_signal = WebApp.Start<Startup>("http://localhost:9000"))
             {
-                Console.WriteLine("Starting ...");
+                Console.WriteLine("Listening ...");
                 SetFileWatcher();
                 LockResources();
                 Console.ReadLine();

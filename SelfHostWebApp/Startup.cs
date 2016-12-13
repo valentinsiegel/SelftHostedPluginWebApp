@@ -11,6 +11,7 @@ using SelfHostWebApp.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Text;
